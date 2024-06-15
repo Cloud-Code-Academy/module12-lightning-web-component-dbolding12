@@ -1,0 +1,35 @@
+.bold {
+    font-weight: bold;
+}
+
+.slds-m-bottom_small {
+    margin-bottom: 0.5rem
+}
+
+.scoreText {
+    font-weight: bold;
+    color: red;
+    font-size: large;
+}
+
+.resultText {
+    font-size: xx-large;
+    font-weight: bold;
+    
+
+}
+
+.resourceList {
+    font-size: x-large;
+}
+
+.resourceList li {
+    font-size: 16px;
+    text-align: left;
+    padding-top: 10px;
+}
+
+.resourceList li:first-child {
+    font-weight: 600;
+
+}
