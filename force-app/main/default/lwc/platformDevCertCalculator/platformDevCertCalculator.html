@@ -1,0 +1,106 @@
+<template> 
+    <lightning-card title="PD1 Calculator">
+        <lightning-button 
+            variant="brand" 
+            label="Calculate" 
+            title="Calculate" 
+            slot="actions"
+            onclick={calculateScore}
+            class="slds-size_x-small"
+            ></lightning-button>
+        <div class="slds-p-horizontal_small">
+        <!-- Input information -->  
+            <Lightning-input 
+                type="number" 
+                name="devFundamentals" 
+                label="Developer Fundementals: 23%"
+                value={devFundamentals}
+                onchange={handleChange}
+                class="slds-size_x-small"></Lightning-input>
+            <Lightning-input 
+                type="number" 
+                ame="processAutomation" 
+                label="Process Automation: 30%"
+                value={processAutomation}
+                onchange={handleChange}
+                class="slds-size_x-small"></Lightning-input>
+            <Lightning-input 
+                type="number" 
+                name="userInterface" 
+                label="User Interface: 25%<"
+                value={userInterface}
+                onchange={handleChange}
+                class="slds-size_x-small"></Lightning-input>
+            <Lightning-input 
+                type="number" 
+                name="testDebugDeploy" 
+                label="Testing, Debugging, and Deployment: 22%"
+                value={testDebugDeploy}
+                onchange={handleChange}
+                class="slds-size_x-small"></Lightning-input>
+        </div>
+        <div slot="footer">
+            <h1 class="slds-text-heading_large">Certification Results:</h1>
+            <p class="slds-text-heading_medium slds-box">
+                Certification Score: <span class="slds-text-color_destructive">{certificationScore}%</span> 
+            </p>
+            <div>
+                <h1 class="slds-text-heading_large">
+                    Previous Attempt
+                </h1>
+                <lightning-tabset></lightning-tabset>
+                <div>
+                    <lightning-tabset>
+                        <div for:each={attemptHistory} for:item="attempt" key={attempt.Id}>
+                            <lightning-tabset></lightning-tabset>
+                                <lightning-tab label={attempt.Id}>
+                                    <c-score-information
+                                        score= {attempt.Score} 
+                                        attempt-id={attempt.Id}
+                                        number-of-questions={numberOfQuestionsCorrect}
+                                        ondeleteattempt={deleteAttemptHandler}      
+                                    >                                 
+                                    </c-score-information>
+                                </lightning-tab>
+                        </div>                        
+                    </lightning-tabset>
+                </div>
+            </div>
+            <div class="resourceList">
+                <!-- Display Results -->
+                <template lwc:if={showResources}>           
+                    
+                <ul class="slds-text-heading_large slds-var-p-top_medium slds-list_dotted">
+                    <li>
+                        Resources:
+                    </li>
+                    <li>
+                        <a href=https://developer.salesforce.com/docs/atlas.en-us.platform_developer_certification_guide.meta/platform_developer_certification_guide/platform_dev_cert_overview.htm>
+                            Salesforce Developer Certification Overview
+                        </a>
+                    </li>
+                    <li>
+                        <a href=https://developer.salesforce.com/docs/atlas.en-us.platform_developer_certification_guide.meta/platform_developer_certification_guide/platform_dev_cert_overview.htm>
+                        Focus on Force
+                        </a>
+                    </li>
+                    <li>
+                        <a href=https://developer.salesforce.com/docs/atlas.en-us.platform_developer_certification_guide.meta/platform_developer_certification_guide/platform_dev_cert_overview.htm>
+                        Salesforce Mentor
+                        </a>
+                    </li>
+                </ul>
+            </template>
+            <template lwc:else>
+                <p class="slds-text-heading_large">
+                    Congrats!!! You have passed the exam!!!!
+    
+                </p>
+            </template>
+            
+         </div>
+        </div>
+       
+    </lightning-card>
+    
+</template>
